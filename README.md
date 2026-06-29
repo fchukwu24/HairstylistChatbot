@@ -1,49 +1,61 @@
 # Haircare & appointment assistant
 
 
-## Setup without docker
+## Install Docker(If it's your first time, you may need a WSL upgrade or something)
 
-```
-pip install -r requirements.txt
-python main.py
-```
+## Run the Docker app
 
-## Setup with docker
+## Setup
 
 ```
 docker compose build --nocache
-docker compose run --rm haircare-chatbot
+docker compose up
 ```
 
+## Open web browser and run link displayed in terminal
 ## Example interaction
 
 ```
-You: how often should I wash my hair?
-Assistant: Most hair types do well with washing every two to three days...
+Assistant: Hi there! Welcome to our salon. I'm happy to help with haircare advice, salon services, hours, availability, and appointments. How can I assist you today?
+User: Hi there, I want tips on my low medium porosity hair for hair care
+Assistant: For your low to medium porosity hair, here are some tips:
+
+* Use warm water when washing your hair.
+* Use moisturizing shampoo, but only use clarifying shampoo if your hair is greasy.
+* Deep condition regularly, letting the deep conditioner sit for 5-10 minutes before rinsing.
+* Detangle your hair in sections to prevent breakage.
+* Consider using steam treatments to help moisture penetrate your hair.
+* Use lightweight products that won't weigh your hair down.
+* Consider using products like Aussie Miracle Curls or TGIN Rose Water Smoothing Leave-In Conditioner, which are suggested for low porosity hair.
+
+Remember to be gentle with your hair and avoid using heavy products that can weigh it down.
 
 You: can I book a haircut with Jordan on 2026-06-20?
-Assistant: Let me check what's open that day...
-Assistant: Jordan has 10:00, 11:30, 13:00, 14:30, and 16:00 open on
-2026-06-20. Which time works for you, and what name should I book it under?
 
-You: 14:30, under Alex
-Assistant: Just to confirm: a haircut with Jordan on 2026-06-20 at 14:30
-for Alex. Should I book it?
+Assistant: I can help book that. I still need: time, service, customer name.
+You: 
+Customer name: Frances
+Service: Trim
+Time: 2 pm
+Assistant: I have the appointment details:
 
+- Service: trim
+- Stylist: Jordan
+- Date: 2026-06-20
+- Time: 14:00
+- Name: Frances
+
+Please confirm: should I book this appointment?
 You: yes
-Assistant: You're booked! Confirmation id 4402e2cb.
+Assistant: You're booked!
+
+- Confirmation ID: 8688blojm724bj51g5h41s3goo
+- Service: Trim
+- Stylist: Jordan
+- Date: 2026-06-20
+- Time: 14:00
+- Name: Frances
+- Email: Not provided
 ```
 
-## How it's organized
-
-- `main.py` -- the terminal REPL loop
-- `llm.py` -- loads the model/tokenizer and wraps it as a LangChain LLM
-- `rag.py` -- chunks `data/*.md`, embeds with HuggingFaceEmbeddings, stores/searches with FAISS
-- `booking.py` -- the mocked appointment backend (in-memory, resets each run)
-- `tools.py` -- the tool registry (descriptions + the dispatcher that runs them)
-- `agent.py` -- the loop that prompts the model, parses any `<tool_call>` it emits, runs it, and feeds the result back in
-- `data/haircare_knowledge.md` -- sample content; add more `.md` files here for a bigger knowledge base
-- `Dockerfile`, `docker-compose.yml`, `.dockerignore` -- containerized deployment
-
-## Design notes
 
