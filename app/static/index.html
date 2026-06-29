@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Haircare Assistant</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Haircare & Appointment Assistant</p>
+        <h1>Ask about haircare, services, hours, or bookings.</h1>
+      </div>
+      <button id="resetBtn" class="secondary-btn" type="button">Reset chat</button>
+    </section>
+
+    <section class="chat-card" aria-label="Chat interface">
+      <div id="chatLog" class="chat-log">
+      </div>
+
+      <form id="chatForm" class="chat-form">
+        <textarea
+          id="messageInput"
+          rows="2"
+          placeholder="Type your message... e.g. Can I book braids with Naj tomorrow?"
+          autocomplete="off"
+        ></textarea>
+        <button id="sendBtn" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
