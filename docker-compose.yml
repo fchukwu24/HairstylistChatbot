@@ -1,0 +1,23 @@
+services:
+  haircare-chatbot:
+    build: .
+    image: haircare-chatbot:latest
+    # stdin_open: true   
+    # tty: true          
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
+      - GOOGLE_CALENDAR_ID=${GOOGLE_CALENDAR_ID}
+      - GOOGLE_TIMEZONE=${GOOGLE_TIMEZONE}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GROQ_MODEL=${GROQ_MODEL}
+    ports:
+      - "8080:8080"
+    volumes:
+      - hf-cache:/root/.cache/huggingface  
+      - faiss-index:/app/.faiss_vector_db       
+      - ./app/data:/app/data                  
+      - ./app:/app
+
+volumes:
+  hf-cache:
+  faiss-index:

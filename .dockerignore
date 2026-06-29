@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.faiss_vector_db/
+.git
+.gitignore
+.env
+README.md
